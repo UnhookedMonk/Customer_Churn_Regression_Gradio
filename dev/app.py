@@ -4,9 +4,9 @@ import numpy as np
 import pickle
 
 #Load the model and encoder and scaler
-model = pickle.load(open("model.pkl", "rb"))
-encoder = pickle.load(open("encoder.pkl", "rb"))
-scaler = pickle.load(open("scaler.pkl", "rb"))
+model = pickle.load(open("dev/model.pkl", "rb"))
+encoder = pickle.load(open("dev/encoder.pkl", "rb"))
+scaler = pickle.load(open("dev/scaler.pkl", "rb"))
 
 #Load the data
 data = pd.read_csv('assets/training_dataset.csv')
@@ -70,39 +70,39 @@ output_components = [
 ]
 
 # Convert the input values to a pandas DataFrame with the appropriate column names
-def input_df_creator(gender,SeniorCitizen,Partner,Dependents, tenure, PhoneService,MultipleLines,InternetService,
-                     OnlineSecurity,OnlineBackup,DeviceProtection,TechSupport,StreamingTV,StreamingMovies,
-                     Contract,PaperlessBilling,PaymentMethod,MonthlyCharges,TotalCharges):
+def input_df_creator(gender,seniorcitizen,partner,dependents, tenure, phoneservice,multiplelines,internetservice,
+                     onlinesecurity,onlinebackup,deviceprotection,techsupport,streamingtv,streamingmovies,
+                     contract,paperlessbilling,paymentmethod,monthlycharges,totalcharges):
     input_data = pd.DataFrame({
         'gender': [gender],
-        'SeniorCitizen': [SeniorCitizen],
-        'Partner': [Partner],
-        'Dependents': [Dependents],
+        'seniorcitizen': [seniorcitizen],
+        'partner': [partner],
+        'dependents': [dependents],
         'tenure': [tenure],
-        'PhoneService': [PhoneService],
-        'MultipleLines': [MultipleLines],
-        'InternetService': [InternetService],
-        'OnlineSecurity': [OnlineSecurity],
-        'OnlineBackup': [OnlineBackup],
-        'DeviceProtection': [DeviceProtection],
-        'TechSupport': [TechSupport],
-        'StreamingTV': [StreamingTV],
-        'StreamingMovies': [StreamingMovies],
-        'Contract': [Contract],
-        'PaperlessBilling': [PaperlessBilling],
-        'PaymentMethod': [PaymentMethod],
-        'MonthlyCharges': [MonthlyCharges],
-        'TotalCharges': [TotalCharges]
+        'phoneservice': [phoneservice],
+        'multiplelines': [multiplelines],
+        'internetservice': [internetservice],
+        'onlinesecurity': [onlinesecurity],
+        'onlinebackup': [onlinebackup],
+        'deviceprotection': [deviceprotection],
+        'techsupport': [techsupport],
+        'streamingtv': [streamingtv],
+        'streamingmovies': [streamingmovies],
+        'contract': [contract],
+        'paperlessbilling': [paperlessbilling],
+        'paymentmethod': [paymentmethod],
+        'monthlycharges': [monthlycharges],
+        'totalcharges': [totalcharges]
     }) 
     return input_data
 
 # Define the function to be called when the Gradio app is run
-def predict_churn(gender,SeniorCitizen,Partner,Dependents, tenure, PhoneService,MultipleLines,InternetService,
-                     OnlineSecurity,OnlineBackup,DeviceProtection,TechSupport,StreamingTV,StreamingMovies,
-                     Contract,PaperlessBilling,PaymentMethod,MonthlyCharges,TotalCharges):
-    input_df = input_df_creator(gender,SeniorCitizen,Partner,Dependents, tenure, PhoneService,MultipleLines,InternetService,
-                     OnlineSecurity,OnlineBackup,DeviceProtection,TechSupport,StreamingTV,StreamingMovies,
-                     Contract,PaperlessBilling,PaymentMethod,MonthlyCharges,TotalCharges)
+def predict_churn(gender,seniorCitizen,partner,dependents, tenure, phoneservice,multiplelines,internetservice,
+                     onlinesecurity,onlinebackup,deviceProtection,techsupport,streamingtv,streamingmovies,
+                     contract,paperlessbilling,paymentmethod,monthlycharges,totalcharges):
+    input_df = input_df_creator(gender,seniorCitizen,partner,dependents, tenure, phoneservice,multiplelines,internetservice,
+                     onlinesecurity,onlinebackup,deviceProtection,techsupport,streamingtv,streamingmovies,
+                     contract,paperlessbilling,paymentmethod,monthlycharges,totalcharges)
     
     # Encode categorical variables
     cat_cols = data.select_dtypes(include=['object']).columns
