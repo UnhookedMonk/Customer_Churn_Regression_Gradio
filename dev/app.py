@@ -9,7 +9,7 @@ encoder = pickle.load(open("dev/encoder.pkl", "rb"))
 scaler = pickle.load(open("dev/scaler.pkl", "rb"))
 
 #Load the data
-data = pd.read_csv('assets/training_dataset.csv')
+data = pd.read_csv('assets/training_data.csv')
 
 # Define the input and output interfaces for the Gradio app
 input_interface=[]
